@@ -1,0 +1,11 @@
+[package]
+name = "coin_trading"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+barter-data = "0.7.1"
+barter-integration = "0.7.2"
+futures = "0.3"
+tokio = { version = "1", features = ["full"] }
+mysql = "25.0.1"
