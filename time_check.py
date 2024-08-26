@@ -16,21 +16,22 @@ df.columns = ['trade_timestamp', 'elapsed_time_python', 'elapsed_time_rust']
 df['diff'] = df['elapsed_time_python'] - df['elapsed_time_rust']
 df['winning'] = df['diff'] > 0
 
-print(len(df[df['winning'] == False]))
-print(len(df[df['winning'] == True]))
-
 python_win = len(df[df['winning'] == False])
 rust_win = len(df[df['winning'] == True])
 
 python_rate = python_win / (python_win + rust_win) * 100
 rust_rate = 100 - python_rate
 
-print(f"Python: {python_rate:.2f}%")
-print(f"Rust: {rust_rate:.2f}%")
-
 
 python_win_diff = df[df['winning'] == False]['diff'].apply(lambda x: abs(x)).mean()
 rust_win_diff = df[df['winning'] == True]['diff'].apply(lambda x: abs(x)).mean()
 
-print(f"Python: {python_win_diff:.10f}")
-print(f"Rust: {rust_win_diff:.10f}")
+print(f"Python Winning Times: {len(df[df['winning'] == False])}")
+print(f"Rust Winning Times: {len(df[df['winning'] == True])}")
+
+print(f"Python Winning Rates: {python_rate:.2f}%")
+print(f"Rust Winning Rates: {rust_rate:.2f}%")
+
+
+print(f"When Python Win: {python_win_diff:.10f}")
+print(f"When Rust Win: {rust_win_diff:.10f}")
